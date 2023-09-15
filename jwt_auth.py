@@ -4,11 +4,13 @@ from jose import jwt,JWTError
 from models import User
 from schemas import *
 from sqlalchemy.orm import Session
-import database
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-JWT_SECRET_KEY = "C(z#4sXt5$S@VJ+PjhB%QALJx^BUt)@vLYQ^Wajz34%9R*D^V)Z+a4Tg3Zsqng#!"
-JWT_EXPRIE_MINUTES = 30
-ALG = "HS256"
+JWT_SECRET_KEY =  os.getenv("JWT_SECRET_KEY")
+JWT_EXPRIE_MINUTES = int(os.getenv("JWT_EXPRIE_MINUTES"))
+ALG = os.getenv("ALG")
 
 def get_user(email:str, db: Session):
     user = db.query(User).filter(User.email == email).first()

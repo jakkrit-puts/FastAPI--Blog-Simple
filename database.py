@@ -1,8 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-SQLALCHEMY_DATABASE_URL = "postgresql://jakkrit.puts:GrPxaLj6nJE3@ep-white-moon-45327075-pooler.ap-southeast-1.aws.neon.tech/fast_api"
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
